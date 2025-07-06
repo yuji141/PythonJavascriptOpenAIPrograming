@@ -12,4 +12,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { question: null, result: null });
 });
 
+//POST送信の処理
+router.post();
+
 module.exports = router;
