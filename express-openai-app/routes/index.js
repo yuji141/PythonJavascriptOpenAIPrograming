@@ -9,7 +9,7 @@ const config = new Configuration({
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { question: null, result: null });
 });
 
 module.exports = router;
