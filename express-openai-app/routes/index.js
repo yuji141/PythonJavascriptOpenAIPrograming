@@ -13,6 +13,23 @@ router.get('/', function(req, res, next) {
 });
 
 //POST送信の処理
-router.post();
+router.post('/',async function(req,res,next){
+  const prompt = req.body["prompt"];
+  const result = await access_openai(prompt);
+  res.render('index',{
+    question: prompt,result:result
+  });
+});
+
+// OpenAI APIアクセス
+async function access_openai(prompt_value) {
+  const openai = new OpenAIAPI(config);
+  const response = await openai.createCompletion({
+    model: "text-davinci-003",
+    prompt : prompt_value,
+    max_tokens: 100,
+  });
+  return response.data.choices[0].text.trim();
+}
 
 module.exports = router;
