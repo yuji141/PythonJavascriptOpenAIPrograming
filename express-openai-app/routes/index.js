@@ -30,6 +30,6 @@ async function access_openai(prompt_value) {
     max_tokens: 100,
   });
   return response.data.choices[0].text.trim();
-}
+} 
 
 module.exports = router;
