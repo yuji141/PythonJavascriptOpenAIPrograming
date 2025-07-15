@@ -2,12 +2,30 @@
 <html lang="ja">
   <head>
     <meta http-equiv="content-type"
-    
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    content="text/html; charset=UTF-8">
+    <title>Express Example</title>
+    <link href="https://cdn.jsdeliver.net/npm/bootctrap@5.0.2/dist/css/bootstrap.css"
+    rel='stylesheet' crossorigin="anonymous" />
   </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+  <body class="container">
+    <h1 class="display-6 py-2">Express Example</h1>
+    
+    <form method="POST" action="/">
+      <div>
+        <label for="prompt">Prompt:</label>
+        <textarea id="prompt" name="prompt"
+        class="form-control"></textarea>
+      </div>
+      <center class="py-3">
+        <input type="submit" value="Submit"
+        class="btn btn-primary">
+      </center>
+      </form>
+      <% if (question != undefined){ %>
+      <p class="border border-2 p-3 h6"><%= question %></p>
+      <% } %>
+      <% if (result != undefined){ %>
+      <p class ="border border-2 p-3 h6"><%= result %></p>}
+      <% } %>
   </body>
 </html>
