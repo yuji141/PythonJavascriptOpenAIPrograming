@@ -1,30 +1,51 @@
+
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <meta http-equiv="content-type"
-    content="text/html; charset=UTF-8">
-    <title>Express Example</title>
-    <link href="https://cdn.jsdeliver.net/npm/bootctrap@5.0.2/dist/css/bootstrap.css"
-    rel='stylesheet' crossorigin="anonymous" />
+    <meta charset="UTF-8">
+    <title>OpenAI デモアプリ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CDN（修正版） -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet" crossorigin="anonymous">
   </head>
-  <body class="container">
-    <h1 class="display-6 py-2">Express Example</h1>
+  <body class="container py-4">
+    <h1 class="mb-4">OpenAI プロンプト送信デモ</h1>
+
+    <!-- フォームエリア -->
     <form method="POST" action="/">
-      <div>
-        <label for="prompt">Prompt:</label>
-        <textarea id="prompt" name="prompt"
-        class="form-control"></textarea>
+      <div class="mb-3">
+        <label for="prompt" class="form-label">質問を入力してください：</label>
+        <textarea id="prompt" name="prompt" rows="4" class="form-control"
+                  placeholder="例：富士山の高さは？"></textarea>
       </div>
-      <center class="py-3">
-        <input type="submit" value="Submit"
-        class="btn btn-primary">
-      </center>
-      </form>
-      <% if (question != undefined){ %>
-      <p class="border border-2 p-3 h6"><%= question %></p>
-      <% } %>
-      <% if (result != undefined){ %>
-      <p class ="border border-2 p-3 h6"><%= result %></p>}
-      <% } %>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">送信する</button>
+      </div>
+    </form>
+
+    <!-- 結果表示 -->
+    <% if (question != undefined) { %>
+      <div class="card mt-5">
+        <div class="card-header">
+          あなたの入力
+        </div>
+        <div class="card-body">
+          <p class="card-text"><%= question %></p>
+        </div>
+      </div>
+    <% } %>
+
+    <% if (result != undefined) { %>
+      <div class="card mt-3">
+        <div class="card-header">
+          OpenAI の返答
+        </div>
+        <div class="card-body">
+          <p class="card-text"><%= result %></p>
+        </div>
+      </div>
+    <% } %>
+
   </body>
 </html>
