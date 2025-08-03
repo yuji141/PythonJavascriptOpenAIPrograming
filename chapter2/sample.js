@@ -1,4 +1,4 @@
-const readline = reqire('readline');
+const readline = require('readline');
 const {Configuration, OpenAIApi} = require('openai');
 
 const rl = readline.createInterface({
