@@ -1,14 +1,16 @@
+// v4以降用のコード（推奨）
 const readline = require('readline');
-const {Configuration, OpenAIApi} = require('openai');
+const OpenAI = require('openai');
 
 const rl = readline.createInterface({
-  input : process.stdin,
-  output : process.stdout
+  input: process.stdin,
+  output: process.stdout
 });
 
-const api_key = "";
-const config =new Configuration({
-  apiKey: api_key,
+const api_key = ""; // ここに実際のAPIキーを入れる
+
+const openai = new OpenAI({
+  apiKey: api_key
 });
 
 input_prompt("");
@@ -20,15 +22,17 @@ function input_prompt(msg) {
   });
 }
 
-function access_openai(prompt_value){
-      const openai= new OpenAIApi(config);
-      
-    openai.createCompletion({
-      model: "text-davinchi-003",
-      prompt: prompt_value,
-      max_tokens: 100,
-      }).then(response=>{
-        const result = response.data.choices[0].text.trim();
-        console.log(result);
-      });
+async function access_openai(prompt_value) {
+  try {
+    const response = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo", // 最新モデルに変更（text-davinci-003は非推奨）
+      messages: [{ role: "user", content: prompt_value }],
+      max_tokens: 100
+    });
+
+    const result = response.choices[0].message.content.trim();
+    console.log(result);
+  } catch (error) {
+    console.error("Error accessing OpenAI:", error);
   }
+}
