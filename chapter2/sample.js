@@ -1,19 +1,11 @@
-// v4以降用のコード（推奨）
 const readline = require('readline');
-const OpenAI = require('openai');
 
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
 
-const api_key = ""; // ここに実際のAPIキーを入れる
-
-const openai = new OpenAI({
-  apiKey: api_key
-});
-
-input_prompt("");
+input_prompt("プロンプトを入力してください: ");
 
 function input_prompt(msg) {
   rl.question(msg, (inputText) => {
@@ -22,17 +14,22 @@ function input_prompt(msg) {
   });
 }
 
+// OpenAIを使わないダミー関数
 async function access_openai(prompt_value) {
   try {
-    const response = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo", // 最新モデルに変更（text-davinci-003は非推奨）
-      messages: [{ role: "user", content: prompt_value }],
-      max_tokens: 100
-    });
-
-    const result = response.choices[0].message.content.trim();
-    console.log(result);
+    // ここにOpenAIの代わりに返すダミー応答を記述
+    const result = dummyResponse(prompt_value);
+    console.log("AIの応答:", result);
   } catch (error) {
-    console.error("Error accessing OpenAI:", error);
+    console.error("エラー:", error);
+  }
+}
+
+function dummyResponse(input) {
+  // 入力に応じて適当な応答を返す
+  if (input.includes("こんにちは")) {
+    return "こんにちは！今日はどんなことを話しましょうか？";
+  } else {
+    return "これはダミーの応答です（APIキーなし）";
   }
 }
