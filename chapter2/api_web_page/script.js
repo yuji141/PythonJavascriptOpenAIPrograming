@@ -1,4 +1,4 @@
-const api_key = '...APIKEY...';
+const api_key = ''; // APIキーなし
 
 function doAction() {
   const value = document.querySelector('#prompt').value;
@@ -11,6 +11,8 @@ function setQnA(question, result) {
 }
 
 function access_openai(prompt) {
+  // 実際のAPI呼び出しをコメントアウト
+  /*
   fetch('https://api.openai.com/v1/completions', {
     method: 'POST',
     headers: {
@@ -28,4 +30,9 @@ function access_openai(prompt) {
       const result = json_data.choices[0].text.trim();
       setQnA(prompt, result);
     });
+  */
+
+  // ダミー回答を直接返す
+  const dummyResult = "（これはダミーの回答です）あなたの質問は受け取りました。";
+  setQnA(prompt, dummyResult);
 }
